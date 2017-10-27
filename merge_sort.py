@@ -90,18 +90,15 @@ def execute_by_random_generator():
         built_in_sort(items)
 
 
-def execute_from_file(file_path):
+def execute_from_file(file_path, num_of_processes):
     m = MergeSort()
     items = read_file(file_path)
-    print len(items)
-    m.merge_sort_single_processed(items)
-    m.merge_sort_multi_processed(items)
-    built_in_sort(items)
+    return m.merge_sort_multi_processed(items, num_of_processes)
 
 
 def main(file_path):
     # execute_by_random_generator()
-    execute_from_file(file_path)
+    execute_from_file(file_path, multiprocessing.cpu_count())
 
 if __name__ == '__main__':
     main("./small_file.txt")

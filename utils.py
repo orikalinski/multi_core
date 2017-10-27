@@ -1,5 +1,9 @@
 import time
 
+SECOND_TO_MICROSECONDS = 1000000
+
+method_to_pretty_name = {'merge_sort_multi_processed': 'MergeSort'}
+
 
 def timeit(method):
     def timed(*args, **kwargs):
@@ -7,7 +11,8 @@ def timeit(method):
         result = method(*args, **kwargs)
         te = time.time()
 
-        print('%r %2.5f sec' % (method.__name__, te-ts))
+        print('%s: %2.5f' % (method_to_pretty_name.get(method.__name__, method.__name__),
+                             (te - ts) * SECOND_TO_MICROSECONDS))
         return result
 
     return timed
